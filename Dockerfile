@@ -4,8 +4,9 @@ ARG PLEROMA_VER=develop
 ARG UID=911
 ARG GID=911
 ENV MIX_ENV=prod
-RUN awk 'NR==2' /etc/apk/repositories | sed 's/main/community/' | tee -a /etc/apk/repositories
-RUN apk update \
+
+RUN echo "http://nl.alpinelinux.org/alpine/latest-stable/main" >> /etc/apk/repositories \
+    && apk update \
     && apk add git gcc g++ musl-dev make cmake file-dev \
     exiftool imagemagick libmagic ncurses postgresql-client ffmpeg
 
